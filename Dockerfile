@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.4-cli
 
 # 依存パッケージをインストール
 RUN apt-get update && apt-get install -y \
@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libzip-dev \
-    mysql-client
+    mariadb-client
 
 # PHP拡張をインストール
 RUN docker-php-ext-install pdo pdo_mysql gd zip
