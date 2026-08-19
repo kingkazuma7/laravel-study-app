@@ -41,22 +41,6 @@ services:
     networks:
       - laravel
 
-  # phpMyAdmin
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: laravel_phpmyadmin
-    restart: always
-    environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: password
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
-    networks:
-      - laravel
-
 volumes:
   db_data:
 
