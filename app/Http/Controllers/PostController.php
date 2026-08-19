@@ -7,59 +7,62 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // 全記事を一覧表示
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('posts.index', ['posts' => $posts]); // ビューに渡す
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // 新規作成フォーム表示
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // フォーム送信時のデータ保存
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(([
+          'title' => 'required|string|max:255',
+          'body' => 'required|string',
+          'author' => 'required|string|max:255',
+        ]));
+
+        Post::create($validated); // dbに保存
+        return redirect('/posts')->with('message', '記事を作成しました');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    // 記事詳細を表示＆閲覧数をカウント
     public function show(Post $post)
     {
-        //
+        $post->increment('views');
+        return view('posts.show', ['post' => $post]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // 編集フォーム表示
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // 更新処理
     public function update(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+          'title' => 'required|string|max:255',
+          'body' => 'required|string',
+          'author' => 'required|string|max:255',
+        ]);
+
+        $post->update($validated); // db更新
+        return redirect('/posts')->with('message', '記事を更新しました!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // 削除処理
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('/posts')->with('message', '記事を削除しました！');
     }
 }
