@@ -38,11 +38,15 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('edit', $post);
+
         return view('posts.edit', ['post' => $post]);
     }
 
     public function update(Request $request, Post $post)
     {
+      $this->authorize('update', $post);
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required|string',
@@ -54,6 +58,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('destroy', $post);
         $post->delete();
         return redirect('/posts')->with('message', '記事を削除しました！');
     }
