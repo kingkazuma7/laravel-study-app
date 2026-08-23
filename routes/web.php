@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +26,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/demo/orm', function () {
+    // Eloquent ORM
+    $posts_orm = App\Models\Post::where('created_at', '>=', now()->startOfYear())
+        ->with('user')
+        ->get();
+
+    return view('demo.orm', ['posts' => $posts_orm]);
+});
+
+Route::get('/demo/querybuilder', function() {
+    // DB Query Builder
+    $posts_qb = DB::table('posts')
+        ->where('posts.created_at', '>=', now()->startOfYear())
+        ->join('users', 'posts.user_id', '=', 'users.id')
+        ->select('posts.id', 'posts.title', 'posts.created_at', 'users.name as author')
+        ->get();
+
+    return view('demo.querybuilder', ['posts' => $posts_qb]);
 });
 
 require __DIR__.'/auth.php';
