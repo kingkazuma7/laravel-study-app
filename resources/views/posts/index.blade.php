@@ -1,6 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       ブログ記事一覧
     </h2>
   </x-slot>
@@ -13,8 +13,8 @@
         </a>
       @endauth
 
-      <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 text-gray-900 dark:text-gray-100">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 text-gray-900">
           @forelse($posts as $post)
             <div class="mb-4 pb-4 border-b">
               <h3 class="text-lg font-bold">
@@ -22,7 +22,7 @@
                   {{ $post->title }}
                 </a>
               </h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400">
+              <p class="text-sm text-gray-600">
                 著者: {{ $post->user->name }} | 閲覧数: {{ $post->views }}
               </p>
             </div>
