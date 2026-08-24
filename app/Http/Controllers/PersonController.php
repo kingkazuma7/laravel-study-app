@@ -17,4 +17,8 @@ class PersonController extends Controller
       $items = $query->get();
       return view('person.index', ['items' => $items]);
     }
+
+    public function show(Person $person) {
+      return view('person.show', ['person' => $person]);
+    }
 }

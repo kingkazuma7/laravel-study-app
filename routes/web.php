@@ -17,6 +17,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/person', [PersonController::class, 'index'])->name('person.index');
+Route::get('/person/{person}', [PersonController::class, 'show'])->name('person.show');
 Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
