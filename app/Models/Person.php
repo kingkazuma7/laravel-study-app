@@ -9,5 +9,6 @@ class Person extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'mail', 'age'];
+    protected $primaryKey = 'person_code';
+    protected $fillable = ['person_code', 'name', 'mail', 'age'];
 }
