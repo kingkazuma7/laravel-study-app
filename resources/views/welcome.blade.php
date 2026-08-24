@@ -20,6 +20,17 @@
 
             <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0;">
 
+            <div style="margin-bottom: 2rem;">
+                <h2 style="font-size: 1.25rem; color: #6b7280; margin: 0 0 1.5rem 0;">Person テーブル</h2>
+                <p>
+                    <a href="/person" style="display: inline-block; padding: 0.75rem 1.5rem; margin: 0.5rem; background: #8b5cf6; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background 0.2s;">
+                        👥 Person一覧
+                    </a>
+                </p>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0;">
+
             <div>
                 <h2 style="font-size: 1.25rem; color: #6b7280; margin: 0 0 1.5rem 0;">データベースアクセス方法の比較</h2>
                 <p style="color: #6b7280; margin: 0 0 1rem 0; font-size: 0.95rem;">
