@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('people', function (Blueprint $table) {
             $table->id();
+            $table->integer('person_code')->unique();
             $table->string('name');
             $table->string('mail');
-            $table->string('age');
+            $table->integer('age');
             $table->timestamps();
         });
     }
