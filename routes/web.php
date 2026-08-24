@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/person', [PersonController::class, 'index'])->name('person.index');
 Route::get('/posts/create', [PostController::class, 'create'])->middleware('auth')->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('posts.store');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
