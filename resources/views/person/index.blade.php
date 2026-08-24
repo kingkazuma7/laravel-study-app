@@ -44,7 +44,11 @@
             <tbody>
               @forelse ($items as $item)
                 <tr class="border-b hover:bg-gray-50">
-                  <td class="px-4 py-2 font-semibold">{{ $item->person_code }}</td>
+                  <td class="px-4 py-2 font-semibold">
+                    <a href="{{ route('person.show', $item->person_code) }}" class="text-blue-600 hover:underline">
+                      {{ $item->person_code }}
+                    </a>
+                  </td>
                   <td class="px-4 py-2">{{ $item->name }}</td>
                   <td class="px-4 py-2">{{ $item->mail }}</td>
                   <td class="px-4 py-2">{{ $item->age }}</td>
